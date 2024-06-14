@@ -2,9 +2,19 @@
     <app-filter (onFilter)="filterHeroesByName($event)"></app-filter>
 </header>
 <div>
-    <h4>{{heroesCount()}} heroes found</h4>
+  <div>
+      <h4>{{heroesService.heroesCount()}} heroes found</h4>
+  </div>
     <button mat-flat-button color="primary" (click)="redirectToCreate()">Create new hero</button>
 </div>
 <section>
   <app-cards></app-cards>
 </section>
+<mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="heroesService.heroesCount()"
+               [pageSize]="pageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>

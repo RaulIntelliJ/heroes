@@ -1,6 +1,6 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { HeroesService } from '../../service/heroes.service';
-import { Hero } from '../../models/hero';
+import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -13,20 +13,25 @@ import { Router } from '@angular/router';
     standalone: true,
     templateUrl: './heroes-list.component.html',
     styleUrl: './heroes-list.component.scss',
-    imports: [MatIconModule, MatCardModule, MatButtonModule, FilterComponent, CardsComponent]
+    imports: [MatIconModule, MatCardModule, MatButtonModule, FilterComponent, CardsComponent, MatPaginatorModule]
 })
-export class HeroesListComponent implements OnInit {
-  heroesCount = computed(() => this.heroesService.heroes().length);
+export class HeroesListComponent {
+  pageSize = 6;
+  pageIndex = 0;
 
   constructor(
-    private heroesService: HeroesService,
+    public heroesService: HeroesService,
     private router: Router
   ) {}
 
-  ngOnInit() {}
-
   filterHeroesByName(filterText: string) {
     this.heroesService.getByName(filterText);
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.heroesService.paginate(this.pageIndex)
   }
 
   redirectToCreate() {

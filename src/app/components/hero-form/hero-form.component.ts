@@ -16,6 +16,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { HeroesService } from '../../service/heroes.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Hero } from '../../models/hero';
+import { CapitalizeFirstDirective } from '../../directives/capitalize-first.directive';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,7 +29,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-hero-form',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, CapitalizeFirstDirective],
   templateUrl: './hero-form.component.html',
   styleUrl: './hero-form.component.scss'
 })

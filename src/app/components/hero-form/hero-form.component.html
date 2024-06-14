@@ -2,7 +2,7 @@
     <h1>{{hero ? 'Edit' : 'Create' }} your hero!</h1>
     <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
-        <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher"
+        <input type="text" matInput appCapitalizeFirst formControlName="name" [errorStateMatcher]="matcher"
         placeholder="Ex. Spiderman">
         @if (heroForm.controls['name'].hasError('required')) {
             <mat-error>Name is <strong>required</strong></mat-error>
