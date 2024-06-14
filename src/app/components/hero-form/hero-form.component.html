@@ -34,7 +34,7 @@
     </mat-form-field>
     <div>
         <button mat-button (click)="redirectHome()">Cancel</button>
-        <button mat-flat-button color="primary" [disabled]="heroForm.invalid" (click)="create()">{{hero ? 'Edit' : 'Create' }}</button>
+        <button mat-flat-button color="primary" [disabled]="heroForm.invalid" (click)="hero ? edit() : create()">{{hero ? 'Edit' : 'Create' }}</button>
     </div>
         
   </form>

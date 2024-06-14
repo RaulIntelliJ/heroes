@@ -19,3 +19,9 @@ mat-card {
         height: 250px;
     }
 }
+
+mat-card-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}

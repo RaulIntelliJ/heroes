@@ -68,6 +68,13 @@ export class HeroFormComponent{
     this.heroesService.create(this.heroForm.getRawValue());
     this.redirectHome();
   }
+
+  edit() {
+    const hero = this.heroForm.getRawValue();
+    hero.id = this.hero?.id;
+    this.heroesService.edit(hero);
+    this.redirectHome();
+  }
     
   redirectHome() {
     this.router.navigateByUrl('heroes');

@@ -16,20 +16,17 @@ import { Router } from '@angular/router';
     imports: [MatIconModule, MatCardModule, MatButtonModule, FilterComponent, CardsComponent]
 })
 export class HeroesListComponent implements OnInit {
-  heroesFiltered = signal([] as Hero[]);
-  heroesCount = computed(() => this.heroesFiltered().length);
+  heroesCount = computed(() => this.heroesService.heroes().length);
 
   constructor(
     private heroesService: HeroesService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.heroesFiltered.set(this.heroesService.getAll());
-  }
+  ngOnInit() {}
 
   filterHeroesByName(filterText: string) {
-    this.heroesFiltered.set(this.heroesService.getByName(filterText));
+    this.heroesService.getByName(filterText);
   }
 
   redirectToCreate() {

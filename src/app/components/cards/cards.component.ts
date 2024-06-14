@@ -4,6 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Hero } from '../../models/hero';
 import { Router } from '@angular/router';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import {
+  MatDialog
+} from '@angular/material/dialog';
+import { HeroesService } from '../../service/heroes.service';
 
 @Component({
   selector: 'app-cards',
@@ -13,12 +18,25 @@ import { Router } from '@angular/router';
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent {
-  @Input() heroes: Signal<Hero[]> = signal([]);
+  constructor(
+    private router: Router, 
+    public dialog: MatDialog, 
+    public heroesService: HeroesService) {}
 
-  constructor(private router: Router) {}
+  delete(id: number, name: string) {
+    const deleteDialog = this.dialog.open(DeleteDialogComponent, {
+      width: '250px', 
+      enterAnimationDuration: '0ms', 
+      exitAnimationDuration: '0ms'
+    });
 
-  delete(id: number) {
+    deleteDialog.componentInstance.name = name;
 
+    deleteDialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.heroesService.delete(id);
+      }
+    })
   }
 
   update(id: number) {

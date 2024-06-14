@@ -1,19 +1,19 @@
-@for (hero of heroes(); track $index) {
+@for (hero of heroesService.heroes(); track $index) {
     <mat-card class="example-card">
         <mat-card-header>
-          <img mat-card-avatar class="avatar" src="../../../assets/icons/{{hero.iconImage}}" [alt]="hero.name">
+          <img mat-card-avatar class="avatar" [src]="hero.image.includes('http') ? hero.image : '../../../assets/icons/' + hero.iconImage" [alt]="hero.name">
           <mat-card-title>{{hero.name}}</mat-card-title>
           <mat-card-subtitle>{{hero.subtitle ?? hero.name}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="../../../assets/img/{{hero.image}}" [alt]="hero.name">
+        <img mat-card-image [src]="hero.image.includes('http') ? hero.image : '../../../assets/img/' + hero.image" [alt]="hero.name">
         <mat-card-content>
           <p>
             {{hero.description}}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="warn"><mat-icon matSuffix>delete</mat-icon></button>
-          <button mat-button color="principal" (click)="update(hero.id)"><mat-icon matSuffix>edit</mat-icon></button>
+          <button mat-button color="warn" (click)="delete(hero.id, hero.name)">Delete</button>
+          <button mat-flat-button color="primary" (click)="update(hero.id)">Edit</button>
         </mat-card-actions>
       </mat-card>
 }
