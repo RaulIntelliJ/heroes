@@ -15,10 +15,13 @@ export class HeroesService {
   }
 
   getAll() {
-    if (!this.heroes().length) {
+    const heroes = this.getHeroesFromLocalStorage();
+    if (heroes) {
+      this.heroes.set(heroes);
+    } else {
       this.heroes.set((heroesData as any).default);
+      this.setHeroesInLocalStorage();
     }
-    return this.heroes();
   }
 
   getById(id: number) {
@@ -27,18 +30,46 @@ export class HeroesService {
   }
 
   getByName(searchParam: string) {
-    if (searchParam && searchParam.trim() === '') {
-      return this.heroes();
+    const allHeroes = this.getHeroesFromLocalStorage();
+    if (searchParam.trim() === '') {
+      this.heroes.set(allHeroes);
+    } else {
+      this.heroes.set(allHeroes
+        .filter((hero: Hero) => hero.name.toLocaleLowerCase().includes(searchParam.toLocaleLowerCase())));
     }
-    return this.heroes()
-      .filter((hero) => hero.name.toLocaleLowerCase().includes(searchParam.toLocaleLowerCase()));
   }
 
   create(hero: Hero) {
+    hero.id = this.generateId()
+    this.heroes().push(hero);
+    this.setHeroesInLocalStorage();
+  }
+
+  generateId(): number {
     const lastId = this.heroes().reduce((maxId, hero) => {
       return hero.id > maxId ? hero.id : maxId;
     }, this.heroes()[0].id);
-    hero.id = lastId + 1;
-    this.heroes.update((values) => {return [...values, hero]})
+
+    return lastId + 1;
+  }
+    
+  edit (heroUpdated: Hero) {
+    const index = this.heroes().findIndex(hero => hero.id === heroUpdated.id);
+    this.heroes()[index] = heroUpdated;
+  }
+      
+  delete (id: number) {
+    this.heroes.set(this.heroes().filter(hero => hero.id !== id));
+    this.setHeroesInLocalStorage();
+  }
+
+  //Save heroes in LS to get data persistance
+  setHeroesInLocalStorage() {
+    window.localStorage.setItem('heroes', JSON.stringify(this.heroes()));
+  }
+
+  getHeroesFromLocalStorage() {
+    const heroes = window.localStorage.getItem('heroes');
+    return heroes ? JSON.parse(heroes) : undefined;
   }
 }
