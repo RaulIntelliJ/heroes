@@ -1,0 +1,10 @@
+<header>
+    <app-filter (onFilter)="filterHeroesByName($event)"></app-filter>
+</header>
+<div>
+    <h4>{{heroesCount()}} heroes found</h4>
+    <button mat-flat-button color="primary" (click)="redirectToCreate()">Create new hero</button>
+</div>
+<section>
+  <app-cards [heroes]="heroesFiltered"></app-cards>
+</section>

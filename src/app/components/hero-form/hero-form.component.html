@@ -1,0 +1,40 @@
+<form class="example-form" [formGroup]="heroForm">
+    <h1>{{hero ? 'Edit' : 'Create' }} your hero!</h1>
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher"
+        placeholder="Ex. Spiderman">
+        @if (heroForm.controls['name'].hasError('required')) {
+            <mat-error>Name is <strong>required</strong></mat-error>
+        }
+    </mat-form-field>                   
+    <mat-form-field class="example-full-width">
+        <mat-label>Subtitle</mat-label>
+        <input type="text" matInput formControlName="subtitle" placeholder="Ex. Your friend and neighbour">
+    </mat-form-field>                   
+    <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" placeholder="Ex. Spiderman is a hero with spider powers...">
+    </mat-form-field>   
+    <mat-form-field class="example-full-width">
+        <mat-label>Image</mat-label>
+        <input type="text" matInput formControlName="image" [errorStateMatcher]="matcher"
+        placeholder="Image URL">
+        @if (heroForm.controls['image'].hasError('required')) {
+            <mat-error>Image is <strong>required</strong></mat-error>
+            }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Icon image</mat-label>
+      <input type="text" matInput formControlName="iconImage" [errorStateMatcher]="matcher"
+             placeholder="Icon image URL">
+      @if (heroForm.controls['iconImage'].hasError('required')) {
+        <mat-error>Icon image is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <div>
+        <button mat-button (click)="redirectHome()">Cancel</button>
+        <button mat-flat-button color="primary" [disabled]="heroForm.invalid" (click)="create()">{{hero ? 'Edit' : 'Create' }}</button>
+    </div>
+        
+  </form>

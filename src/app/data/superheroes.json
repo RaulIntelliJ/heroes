@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Iron man",
+        "image": "iron-man.jpg",
+        "iconImage": "iron-man-icon.png",
+        "description": ""
+    },
+    {
+        "id": 2,
+        "name": "Captain America",
+        "image": "captain-america.webp",
+        "iconImage": "captain-america-icon.png",
+        "description": ""
+    },
+    {
+        "id": 3,
+        "name": "Ant-man",
+        "image": "ant-man.webp",
+        "iconImage": "ant-man-icon.webp",
+        "description": ""
+    },
+    {
+        "id": 4,
+        "name": "Black panther",
+        "image": "black-panther.jpg",
+        "iconImage": "black-panther-icon.png",
+        "description": ""
+    },
+    {
+        "id": 5,
+        "name": "Black widow",
+        "image": "black-widow.jpg",
+        "iconImage": "black-widow-icon.png",
+        "description": ""
+    },
+    {
+        "id": 6,
+        "name": "Captain Marvel",
+        "image": "captain-marvel.jpg",
+        "iconImage": "captain-marvel-icon.png",
+        "description": ""
+    },
+    {
+        "id": 7,
+        "name": "Hawkeye",
+        "image": "hawkeye.jpg",
+        "iconImage": "hawkeye-icon.png",
+        "description": ""
+    },
+    {
+        "id": 8,
+        "name": "Hulk",
+        "image": "hulk.webp",
+        "iconImage": "hulk-icon.png",
+        "description": ""
+    }
+]
