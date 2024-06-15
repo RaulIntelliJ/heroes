@@ -1,5 +1,6 @@
 # Superheroes
 
+Node version: 18.19.1
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
 ## Development server
