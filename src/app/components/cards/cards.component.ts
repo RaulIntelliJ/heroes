@@ -18,6 +18,8 @@ import { HeroesService } from '../../service/heroes.service';
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent {
+  @Input() heroes: any;
+
   constructor(
     private router: Router, 
     public dialog: MatDialog, 

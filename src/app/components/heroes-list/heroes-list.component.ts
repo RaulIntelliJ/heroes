@@ -1,9 +1,9 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { HeroesService } from '../../service/heroes.service';
 import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { FilterComponent } from "../filter/filter.component";
 import { CardsComponent } from "../cards/cards.component";
 import { Router } from '@angular/router';
@@ -17,21 +17,25 @@ import { Router } from '@angular/router';
 })
 export class HeroesListComponent {
   pageSize = 6;
-  pageIndex = 0;
+  pageNumber = signal(0);
+
+  heroes = computed(() => {
+    const startIndex = this.pageNumber() * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.heroesService.allHeroes().slice(startIndex, endIndex);
+  });
 
   constructor(
     public heroesService: HeroesService,
     private router: Router
   ) {}
 
-  filterHeroesByName(filterText: string) {
-    this.heroesService.getByName(filterText);
+  handlePageEvent(e: PageEvent) {
+    this.pageNumber.set(e.pageIndex);
   }
 
-  handlePageEvent(e: PageEvent) {
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
-    this.heroesService.paginate(this.pageIndex)
+  onFilter(searchParam: string) {
+    this.heroesService.getByName(searchParam);
   }
 
   redirectToCreate() {

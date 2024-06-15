@@ -1,5 +1,5 @@
 <header>
-    <app-filter (onFilter)="filterHeroesByName($event)"></app-filter>
+    <app-filter (onFilter)="onFilter($event)"></app-filter>
 </header>
 <div>
   <div>
@@ -8,13 +8,13 @@
     <button mat-flat-button color="primary" (click)="redirectToCreate()">Create new hero</button>
 </div>
 <section>
-  <app-cards></app-cards>
+  <app-cards [heroes]="heroes"></app-cards>
 </section>
 <mat-paginator #paginator
                class="demo-paginator"
                (page)="handlePageEvent($event)"
                [length]="heroesService.heroesCount()"
                [pageSize]="pageSize"
-               [pageIndex]="pageIndex"
+               [pageIndex]="pageNumber()"
                aria-label="Select page">
 </mat-paginator>

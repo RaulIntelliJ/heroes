@@ -8,7 +8,6 @@ import * as heroesData from '../data/superheroes.json';
 })
 export class HeroesService {
   allHeroes = signal([] as Hero[])
-  heroes = signal([] as Hero[]);
   heroesCount = computed(() => this.allHeroes().length);
 
   constructor() { 
@@ -19,10 +18,8 @@ export class HeroesService {
     this.allHeroes.set(this.getHeroesFromLocalStorage());
     if (!this.allHeroes()?.length) {
       this.allHeroes.set((heroesData as any).default);
-      this.heroes.set((heroesData as any).default);
       this.setHeroesInLocalStorage();
     }
-    this.paginate(0);
   }
 
   getById(id: number) {
@@ -31,18 +28,15 @@ export class HeroesService {
   }
 
   getByName(searchParam: string) {
-    if (searchParam.trim() === '') {
-      this.heroes.set(this.allHeroes());
-    } else {
-      this.heroes.set(this.allHeroes()
-        .filter((hero: Hero) => hero.name.toLocaleLowerCase().includes(searchParam.toLocaleLowerCase())));
+    let heroesFromLS = this.getHeroesFromLocalStorage();
+    if (searchParam.trim() !== '') {
+      heroesFromLS = heroesFromLS
+        .filter((hero: Hero) => hero.name.toLocaleLowerCase().includes(searchParam.toLocaleLowerCase()));
     }
-    if (this.heroes()?.length > 6) {
-      this.paginate(0, this.heroes());
-    }
+    this.allHeroes.set(heroesFromLS);
   }
 
-  create(hero: Hero) {
+  create (hero: Hero) {
     hero.id = this.generateId()
     this.allHeroes.update((values) => [...values, hero]);
     this.setHeroesInLocalStorage();
@@ -52,19 +46,11 @@ export class HeroesService {
     const index = this.allHeroes().findIndex(hero => hero.id === heroUpdated.id);
     this.allHeroes()[index] = heroUpdated;
     this.setHeroesInLocalStorage();
-    this.paginate(0);
   }
       
   delete (id: number) {
     this.allHeroes.set(this.allHeroes().filter(hero => hero.id !== id));
     this.setHeroesInLocalStorage();
-    this.paginate(0);
-  }
-
-  paginate(pageNumber: number, heroesToPaginate?: Hero[]) {
-    const startIndex = pageNumber * 6;
-    const endIndex = startIndex + 6;
-    this.heroes.set((heroesToPaginate ?? this.allHeroes()).slice(startIndex, endIndex));
   }
 
   private generateId(): number {

@@ -1,4 +1,4 @@
-@for (hero of heroesService.heroes(); track $index) {
+@for (hero of heroes(); track $index) {
     <mat-card class="example-card">
         <mat-card-header>
           <img mat-card-avatar class="avatar" [src]="hero.image.includes('http') ? hero.image : '../../../assets/icons/' + hero.iconImage" [alt]="hero.name">

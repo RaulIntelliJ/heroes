@@ -6,7 +6,7 @@
 }
 
 mat-card {
-    width: 20%;
+    width: 25%;
     margin: 2%;
 
     .avatar {
@@ -20,8 +20,15 @@ mat-card {
     }
 }
 
+mat-card-content {
+    p {
+        margin: 1em;
+    }
+}
+
 mat-card-actions {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    align-items: flex-end;
 }
