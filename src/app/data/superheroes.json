@@ -1,58 +1,66 @@
 [
     {
         "id": 1,
-        "name": "Iron man",
+        "name": "Iron Man",
+        "subtitle": "The Armored Avenger",
         "image": "iron-man.jpg",
         "iconImage": "iron-man-icon.png",
-        "description": ""
+        "description": "A billionaire genius who dons a suit of armor to protect the world as Iron Man."
     },
     {
         "id": 2,
         "name": "Captain America",
+        "subtitle": "The First Avenger",
         "image": "captain-america.webp",
         "iconImage": "captain-america-icon.png",
-        "description": ""
+        "description": "A super soldier from World War II who fights for justice and freedom with his iconic shield."
     },
     {
         "id": 3,
-        "name": "Ant-man",
+        "name": "Ant-Man",
+        "subtitle": "The Size-Shifting Hero",
         "image": "ant-man.webp",
         "iconImage": "ant-man-icon.webp",
-        "description": ""
+        "description": "A hero who can shrink to the size of an ant while maintaining his strength, using advanced technology."
     },
     {
         "id": 4,
-        "name": "Black panther",
+        "name": "Black Panther",
+        "subtitle": "The King of Wakanda",
         "image": "black-panther.jpg",
         "iconImage": "black-panther-icon.png",
-        "description": ""
+        "description": "The ruler of the advanced African nation of Wakanda, who defends his people as Black Panther."
     },
     {
         "id": 5,
-        "name": "Black widow",
+        "name": "Black Widow",
+        "subtitle": "The Master Spy",
         "image": "black-widow.jpg",
         "iconImage": "black-widow-icon.png",
-        "description": ""
+        "description": "A highly trained former spy and Avenger who uses her skills and intelligence to fight against evil."
     },
     {
         "id": 6,
         "name": "Captain Marvel",
+        "subtitle": "The Galactic Warrior",
         "image": "captain-marvel.jpg",
         "iconImage": "captain-marvel-icon.png",
-        "description": ""
+        "description": "A powerful hero with cosmic abilities, fighting to protect Earth and the universe."
     },
     {
         "id": 7,
         "name": "Hawkeye",
+        "subtitle": "The Master Archer",
         "image": "hawkeye.jpg",
         "iconImage": "hawkeye-icon.png",
-        "description": ""
+        "description": "A highly skilled marksman and archer, known for his precision and bravery as an Avenger."
     },
     {
         "id": 8,
         "name": "Hulk",
+        "subtitle": "The Green Goliath",
         "image": "hulk.webp",
         "iconImage": "hulk-icon.png",
-        "description": ""
+        "description": "A brilliant scientist who transforms into a powerful green giant when angered, known as the Hulk."
     }
 ]
